@@ -9,15 +9,19 @@ I finished module 7, where we add validation to the form, however, have been stu
 - I also found another possible solution (but I don't remember where, no link) to add to the ng-disabled to check form.$invalid || form.$pending, but that didn't make a difference, also tried data-ng disabled, but no change.
 
 **Button shouldn't be disabled if form is valid, but I suppose at this first point of editing an exisiting product it's OK.**
+
 ![button shouldn't be disabled if form is valid](http://i.imgur.com/yKbmpYJ.png)
 
 **Button doesn't change, I've erased the current info in the inputs.**
+
 ![button disabled on edit, erasing input](http://i.imgur.com/RplBwrI.png)
 
 **But after re-entering info in the inputs to make sure they're valid again, the button remains disabled.**
+
 ![button still disabled after re-entering valid input](http://i.imgur.com/BVokBqz.png)
 
 **Button works fine when adding a new product, toggles enabled & disabled.**
+
 ![button works fine when adding new product](http://i.imgur.com/Ia5DeEk.png)
 
 ### This is module 6 finished:
