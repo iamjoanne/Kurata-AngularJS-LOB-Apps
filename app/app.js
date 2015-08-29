@@ -1,6 +1,6 @@
 (function () {
     "use strict"; //to catch common errors
-    var app = angular.module("productManagement", ["common.services", "ui.router", "ui.mask", "ui.bootstrap", "productResourceMock"]);
+    var app = angular.module("productManagement", ["common.services", "ui.router", "ui.mask", "ui.bootstrap", "ngMessages", "productResourceMock"]);
     /* ^^this line on its own is global, until wrapped in this IIFE pattern, now in another function to be local, self-executing; you can't put declarations within parentheses, so wrapped in parentheses because it is a function expression; */
 
     app.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {

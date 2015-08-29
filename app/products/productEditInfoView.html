@@ -1,17 +1,34 @@
-<form class="form-horizontal" name="productForm">
+<form class="form-horizontal" name="productForm" novalidate>
     <fieldset>
         <legend>Basic Product Information</legend>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error':productForm.inputProductName.$invalid && productForm.inputProductName.$dirty}">
             <label class="col-md-2 control-label" for="inputProductName">Product Name</label>
             <div class="col-md-4">
-                <input class="form-control" type="text" id="inputProductName" placeholder="Product Name" ng-model="vm.product.productName" />
+                <input class="form-control" type="text" id="inputProductName" name="inputProductName" placeholder="Product Name (required)" ng-model="vm.product.productName" required ng-minlength="4" ng-maxlength="12" />
             </div>
+            <span class="help-block has-error">
+                <!-- ON ANGULAR 1.3+-->
+                <span ng-messages="productForm.inputProductName.$error">
+                       <span ng-message="required">
+                        Product Name is required.
+                    </span>
+            <span ng-message="minlength">
+                        Product Name must be at least 4 characters in length.
+                    </span>
+            <span ng-message="maxlength">
+                        Product Name cannot exceed 12 characters in length.
+                    </span>
+            </span>
+            </span>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error':productForm.inputProductCode.$invalid && productForm.inputProductCode.$dirty}">
             <label class="col-md-2 control-label" for="inputProductCode">Product Code</label>
             <div class="col-md-4">
-                <input class="form-control" id="inputProductCode" ui-mask="AAA-****" ng-model="vm.product.productCode">
+                <input class="form-control" id="inputProductCode" name="inputProductCode" ui-mask="AAA-**** (required)" ng-model="vm.product.productCode" required>
             </div>
+            <span class="help-block has-error" ng-show="productForm.inputProductCode.$invalid">
+                Product Code is required.
+            </span>
         </div>
         <div class="form-group">
             <label for="inputAvailabilityDate" class="col-md-2 control-label">Availability</label>
@@ -36,10 +53,19 @@
         <div class="form-group">
             <div class="col-md-4 col-md-offset-2">
                 <span>
-                    <button class="btn btn-primary" style="width:80px; margin-right:10px;" ng-click="vm.submit()">Save</button>
+                        <button class="btn btn-primary"
+                                style="width:80px;margin-right:10px"
+                                ng-click="vm.submit(productForm.$valid)"
+                                data-ng-disabled="productForm.$invalid"><!--pause 07_07, ng-disabled not working when editing product, but working when adding new product-->
+                            Save
+                        </button>
                     </span>
                 <span>
-                    <button class="btn btn-default" style="width:70px" ng-click="vm.cancel()">Cancel</button>
+                        <button class="btn btn-default"
+                                style="width:70px"
+                                ng-click="vm.cancel()">
+                            Cancel
+                        </button>
                     </span>
             </div>
         </div>
